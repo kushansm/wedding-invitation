@@ -26,6 +26,7 @@ function InvitationContent() {
         message: searchParams.get("message") || "We're getting married!",
         rsvpEmail: searchParams.get("rsvpEmail") || "wedding@example.com",
         language: (searchParams.get("language") as 'en' | 'si') || "en",
+        template: (searchParams.get("template") as any) || "classic",
     };
 
     const template = searchParams.get("template") || "classic";

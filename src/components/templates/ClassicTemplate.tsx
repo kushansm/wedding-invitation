@@ -27,12 +27,12 @@ export const ClassicTemplate: React.FC<TemplateProps> = ({
     });
 
     return (
-        <div className="w-full max-w-2xl bg-white p-12 md:p-20 shadow-2xl relative overflow-hidden border-[16px] border-double border-primary/20 flex flex-col items-center text-center space-y-10 animate-in fade-in slide-in-from-top-4 duration-1000">
-            {/* Decorative Elements */}
-            <div className="absolute top-0 left-0 w-32 h-32 border-t-4 border-l-4 border-primary/30 rounded-tl-3xl -translate-x-4 -translate-y-4" />
-            <div className="absolute top-0 right-0 w-32 h-32 border-t-4 border-r-4 border-primary/30 rounded-tr-3xl translate-x-4 -translate-y-4" />
-            <div className="absolute bottom-0 left-0 w-32 h-32 border-b-4 border-l-4 border-primary/30 rounded-bl-3xl -translate-x-4 translate-y-4" />
-            <div className="absolute bottom-0 right-0 w-32 h-32 border-b-4 border-r-4 border-primary/30 rounded-br-3xl translate-x-4 translate-y-4" />
+        <div className="w-full max-w-2xl bg-white p-12 md:p-20 shadow-[0_20px_50px_rgba(0,0,0,0.1),0_10px_30px_rgba(0,0,0,0.05)] relative overflow-hidden border-[16px] border-double border-primary/20 flex flex-col items-center text-center space-y-10 animate-in fade-in slide-in-from-top-4 duration-1000 before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] before:opacity-30 before:pointer-events-none">
+            {/* Decorative Corners */}
+            <div className="absolute top-6 left-6 w-16 h-16 border-t-2 border-l-2 border-primary/20 pointer-events-none" />
+            <div className="absolute top-6 right-6 w-16 h-16 border-t-2 border-r-2 border-primary/20 pointer-events-none" />
+            <div className="absolute bottom-6 left-6 w-16 h-16 border-b-2 border-l-2 border-primary/20 pointer-events-none" />
+            <div className="absolute bottom-6 right-6 w-16 h-16 border-b-2 border-r-2 border-primary/20 pointer-events-none" />
 
             <div className="space-y-4">
                 <h3 className="text-primary font-medium tracking-[0.3em] uppercase text-xs">

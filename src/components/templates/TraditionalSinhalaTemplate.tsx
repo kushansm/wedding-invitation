@@ -26,7 +26,10 @@ export const TraditionalSinhalaTemplate: React.FC<TemplateProps> = ({
     });
 
     return (
-        <div className="w-full max-w-2xl bg-[#8B0000] text-[#D4AF37] p-8 md:p-16 shadow-2xl relative overflow-hidden border-[12px] border-double border-[#D4AF37]/50 flex flex-col items-center text-center space-y-8 font-serif">
+        <div className="w-full max-w-2xl bg-[#8B0000] text-[#D4AF37] p-8 md:p-16 shadow-[0_30px_60px_rgba(0,0,0,0.4)] relative overflow-hidden border-[12px] border-double border-[#D4AF37]/50 flex flex-col items-center text-center space-y-8 font-serif before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] before:opacity-10 before:pointer-events-none">
+            {/* Golden Grain Effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent pointer-events-none" />
+
             {/* Cultural Motifs (SVG Overlay) */}
             <div className="absolute top-4 left-4 opacity-20 transform -rotate-12">
                 <svg width="100" height="100" viewBox="0 0 100 100" fill="currentColor">

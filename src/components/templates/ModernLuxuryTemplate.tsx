@@ -26,9 +26,9 @@ export const ModernLuxuryTemplate: React.FC<TemplateProps> = ({
     });
 
     return (
-        <div className="w-full max-w-2xl bg-[#0a0a0a] text-white p-12 md:p-24 shadow-2xl relative flex flex-col items-center text-center space-y-12 font-sans border-t-[20px] border-[#D4AF37]">
+        <div className="w-full max-w-2xl bg-[#0a0a0a] text-white p-12 md:p-24 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.5)] relative flex flex-col items-center text-center space-y-12 font-sans border-t-[20px] border-[#D4AF37] before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')] before:opacity-20 before:pointer-events-none">
 
-            <div className="space-y-4">
+            <div className="space-y-4 relative z-10">
                 <p className="text-[#D4AF37] tracking-[0.4em] uppercase text-[10px] font-semibold">
                     {t.togetherWithFamilies}
                 </p>

@@ -15,5 +15,5 @@ export interface TemplateProps {
     rsvpEmail?: string;
     // Keep older fields for backwards compatibility during refactor if needed
     brideParents?: string;
-    groomParents?: string;
+    template: 'classic' | 'sinhala' | 'luxury';
 }
