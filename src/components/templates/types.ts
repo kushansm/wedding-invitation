@@ -1,13 +1,19 @@
 export interface TemplateProps {
     brideName: string;
     groomName: string;
-    brideParents: string;
-    groomParents: string;
+    brideFather?: string;
+    brideMother?: string;
+    groomFather?: string;
+    groomMother?: string;
     date: string;
     time: string;
     venue: string;
-    poruwaTime: string;
-    rsvpDate: string;
+    poruwaTime?: string;
+    rsvpDate?: string;
+    language: 'en' | 'si';
     message?: string;
     rsvpEmail?: string;
+    // Keep older fields for backwards compatibility during refactor if needed
+    brideParents?: string;
+    groomParents?: string;
 }

@@ -14,8 +14,10 @@ function InvitationContent() {
     const props: TemplateProps = {
         brideName: searchParams.get("brideName") || "Sarah",
         groomName: searchParams.get("groomName") || "Thomas",
-        brideParents: searchParams.get("brideParents") || "Mr. & Mrs. Perera",
-        groomParents: searchParams.get("groomParents") || "Mr. & Mrs. Fernando",
+        brideFather: searchParams.get("brideFather") || "Mr. Perera",
+        brideMother: searchParams.get("brideMother") || "Mrs. Perera",
+        groomFather: searchParams.get("groomFather") || "Mr. Fernando",
+        groomMother: searchParams.get("groomMother") || "Mrs. Fernando",
         date: searchParams.get("date") || "2024-12-25",
         time: searchParams.get("time") || "18:00",
         venue: searchParams.get("venue") || "Grand Hotel, Nuwara Eliya",
@@ -23,6 +25,7 @@ function InvitationContent() {
         rsvpDate: searchParams.get("rsvpDate") || "2024-12-01",
         message: searchParams.get("message") || "We're getting married!",
         rsvpEmail: searchParams.get("rsvpEmail") || "wedding@example.com",
+        language: (searchParams.get("language") as 'en' | 'si') || "en",
     };
 
     const template = searchParams.get("template") || "classic";

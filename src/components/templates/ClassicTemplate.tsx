@@ -1,18 +1,25 @@
 import React from 'react';
 import { TemplateProps } from './types';
+import { translations } from './translations';
 
 export const ClassicTemplate: React.FC<TemplateProps> = ({
     brideName,
     groomName,
+    brideFather,
+    brideMother,
+    groomFather,
+    groomMother,
     date,
     time,
     venue,
     message,
     rsvpEmail,
     poruwaTime,
-    rsvpDate
+    rsvpDate,
+    language
 }) => {
-    const formattedDate = new Date(date).toLocaleDateString("en-US", {
+    const t = translations[language];
+    const formattedDate = new Date(date).toLocaleDateString(language === 'si' ? 'si-LK' : 'en-US', {
         weekday: "long",
         year: "numeric",
         month: "long",
@@ -28,14 +35,21 @@ export const ClassicTemplate: React.FC<TemplateProps> = ({
             <div className="absolute bottom-0 right-0 w-32 h-32 border-b-4 border-r-4 border-primary/30 rounded-br-3xl translate-x-4 translate-y-4" />
 
             <div className="space-y-4">
-                <h3 className="text-primary font-medium tracking-[0.3em] uppercase text-sm">
-                    Join us for the wedding of
+                <h3 className="text-primary font-medium tracking-[0.3em] uppercase text-xs">
+                    {t.weddingOf}
                 </h3>
-                <div className="flex flex-col items-center gap-2">
+
+                <div className="text-sm font-sans text-foreground/60 space-y-1 lowercase italic">
+                    <p>{brideFather} & {brideMother}</p>
+                    <p>{t.and}</p>
+                    <p>{groomFather} & {groomMother}</p>
+                </div>
+
+                <div className="flex flex-col items-center gap-2 pt-4">
                     <h1 className="text-5xl md:text-7xl font-serif text-foreground break-words w-full">
                         {brideName}
                     </h1>
-                    <span className="text-3xl font-serif text-primary italic">&</span>
+                    <span className="text-3xl font-serif text-primary italic">{t.and}</span>
                     <h1 className="text-5xl md:text-7xl font-serif text-foreground break-words w-full">
                         {groomName}
                     </h1>
@@ -54,27 +68,25 @@ export const ClassicTemplate: React.FC<TemplateProps> = ({
                         {formattedDate}
                     </p>
                     <p className="text-lg text-foreground/70 uppercase tracking-widest">
-                        at {time}
+                        {t.time} {time}
                     </p>
                     {poruwaTime && (
                         <p className="text-sm text-foreground/50 uppercase tracking-widest">
-                            Poruwa Ceremony at {poruwaTime}
+                            {t.poruwa} {poruwaTime}
                         </p>
                     )}
                 </div>
 
                 <div className="space-y-1">
-                    <p className="text-primary font-semibold uppercase tracking-widest text-xs">The Venue</p>
+                    <p className="text-primary font-semibold uppercase tracking-widest text-xs">{t.venue}</p>
                     <p className="text-xl font-serif text-foreground">{venue}</p>
                 </div>
             </div>
 
-            <div className="pt-6 space-y-4">
-                <div className="inline-block border border-primary/20 px-8 py-3 rounded-full">
-                    <p className="text-sm text-foreground/60">
-                        Please RSVP to <span className="text-primary font-semibold">{rsvpEmail}</span> by {rsvpDate}
-                    </p>
-                </div>
+            <div className="pt-6 space-y-4 border-t border-primary/10 w-full">
+                <p className="text-sm text-foreground/60 italic">
+                    {t.rsvp} <span className="text-primary font-semibold">{rsvpEmail}</span> {t.when} {rsvpDate}
+                </p>
             </div>
         </div>
     );

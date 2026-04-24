@@ -8,8 +8,10 @@ export default function CreatePage() {
     const [formData, setFormData] = useState({
         brideName: "",
         groomName: "",
-        brideParents: "",
-        groomParents: "",
+        brideFather: "",
+        brideMother: "",
+        groomFather: "",
+        groomMother: "",
         date: "",
         time: "",
         venue: "",
@@ -18,6 +20,7 @@ export default function CreatePage() {
         rsvpEmail: "",
         message: "We're getting married!",
         template: "classic",
+        language: "en",
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -40,27 +43,33 @@ export default function CreatePage() {
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-8">
-                    {/* Template Selection */}
-                    <div className="space-y-4">
-                        <label className="text-sm font-bold uppercase tracking-widest text-primary">Choose Template</label>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                            {[
-                                { id: 'classic', name: 'Classic' },
-                                { id: 'sinhala', name: 'Traditional Sinhala' },
-                                { id: 'luxury', name: 'Modern Luxury' }
-                            ].map((tpl) => (
-                                <button
-                                    key={tpl.id}
-                                    type="button"
-                                    onClick={() => setFormData(p => ({ ...p, template: tpl.id }))}
-                                    className={`p-4 rounded-xl border-2 transition-all text-sm font-medium ${formData.template === tpl.id
+                    {/* Template & Language Selection */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold uppercase tracking-widest text-primary">Choose Template</label>
+                            <select name="template" value={formData.template} onChange={handleChange} className="w-full p-3 rounded-xl border-2 border-black/5 bg-white focus:border-primary outline-none">
+                                <option value="classic">Classic</option>
+                                <option value="sinhala">Traditional Sinhala</option>
+                                <option value="luxury">Modern Luxury</option>
+                            </select>
+                        </div>
+                        <div className="space-y-4">
+                            <label className="text-sm font-bold uppercase tracking-widest text-primary">Language</label>
+                            <div className="flex gap-4">
+                                {['en', 'si'].map((lang) => (
+                                    <button
+                                        key={lang}
+                                        type="button"
+                                        onClick={() => setFormData(p => ({ ...p, language: lang }))}
+                                        className={`flex-1 p-3 rounded-xl border-2 transition-all text-sm font-medium ${formData.language === lang
                                             ? 'border-primary bg-primary/5 text-primary shadow-inner'
                                             : 'border-black/5 hover:border-primary/20 bg-white'
-                                        }`}
-                                >
-                                    {tpl.name}
-                                </button>
-                            ))}
+                                            }`}
+                                    >
+                                        {lang === 'en' ? 'English' : 'සිංහල'}
+                                    </button>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
@@ -73,8 +82,12 @@ export default function CreatePage() {
                                 <input required type="text" name="brideName" value={formData.brideName} onChange={handleChange} placeholder="Sarah" className="w-full border-b border-primary/20 focus:border-primary outline-none py-1 bg-transparent transition-colors" />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-semibold uppercase tracking-wider text-foreground/70">Parents</label>
-                                <input required type="text" name="brideParents" value={formData.brideParents} onChange={handleChange} placeholder="Mr. & Mrs. Perera" className="w-full border-b border-primary/20 focus:border-primary outline-none py-1 bg-transparent transition-colors" />
+                                <label className="text-xs font-semibold uppercase tracking-wider text-foreground/70">Father's Name</label>
+                                <input required type="text" name="brideFather" value={formData.brideFather} onChange={handleChange} placeholder="Bride's Father" className="w-full border-b border-primary/20 focus:border-primary outline-none py-1 bg-transparent transition-colors" />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-semibold uppercase tracking-wider text-foreground/70">Mother's Name</label>
+                                <input required type="text" name="brideMother" value={formData.brideMother} onChange={handleChange} placeholder="Bride's Mother" className="w-full border-b border-primary/20 focus:border-primary outline-none py-1 bg-transparent transition-colors" />
                             </div>
                         </div>
 
@@ -86,8 +99,12 @@ export default function CreatePage() {
                                 <input required type="text" name="groomName" value={formData.groomName} onChange={handleChange} placeholder="Thomas" className="w-full border-b border-primary/20 focus:border-primary outline-none py-1 bg-transparent transition-colors" />
                             </div>
                             <div className="space-y-2">
-                                <label className="text-xs font-semibold uppercase tracking-wider text-foreground/70">Parents</label>
-                                <input required type="text" name="groomParents" value={formData.groomParents} onChange={handleChange} placeholder="Mr. & Mrs. Fernando" className="w-full border-b border-primary/20 focus:border-primary outline-none py-1 bg-transparent transition-colors" />
+                                <label className="text-xs font-semibold uppercase tracking-wider text-foreground/70">Father's Name</label>
+                                <input required type="text" name="groomFather" value={formData.groomFather} onChange={handleChange} placeholder="Groom's Father" className="w-full border-b border-primary/20 focus:border-primary outline-none py-1 bg-transparent transition-colors" />
+                            </div>
+                            <div className="space-y-2">
+                                <label className="text-xs font-semibold uppercase tracking-wider text-foreground/70">Mother's Name</label>
+                                <input required type="text" name="groomMother" value={formData.groomMother} onChange={handleChange} placeholder="Groom's Mother" className="w-full border-b border-primary/20 focus:border-primary outline-none py-1 bg-transparent transition-colors" />
                             </div>
                         </div>
                     </div>
