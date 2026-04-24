@@ -15,10 +15,12 @@ export const ModernLuxuryTemplate: React.FC<TemplateProps> = ({
     poruwaTime,
     rsvpDate,
     message,
-    language
+    language,
+    inviteeName
 }) => {
-    const t = translations[language];
-    const formattedDate = new Date(date).toLocaleDateString(language === 'si' ? 'si-LK' : 'en-US', {
+    const t = translations[language as keyof typeof translations];
+    const locale = language === 'si' ? 'si-LK' : language === 'ta' ? 'ta-IN' : 'en-US';
+    const formattedDate = new Date(date).toLocaleDateString(locale, {
         weekday: "long",
         year: "numeric",
         month: "long",
@@ -29,9 +31,17 @@ export const ModernLuxuryTemplate: React.FC<TemplateProps> = ({
         <div className="w-full max-w-2xl bg-[#0a0a0a] text-white p-12 md:p-24 shadow-[0_40px_80px_-15px_rgba(0,0,0,0.5)] relative flex flex-col items-center text-center space-y-12 font-sans border-t-[20px] border-[#D4AF37] before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/dark-leather.png')] before:opacity-20 before:pointer-events-none">
 
             <div className="space-y-4 relative z-10">
-                <p className="text-[#D4AF37] tracking-[0.4em] uppercase text-[10px] font-semibold">
-                    {t.togetherWithFamilies}
-                </p>
+                {inviteeName && (
+                    <div className="space-y-1 animate-in fade-in slide-in-from-bottom-2 duration-700">
+                        <span className="text-[#D4AF37]/80 font-serif italic text-lg">{t.dear} {inviteeName},</span>
+                        <p className="text-white/40 text-xs tracking-widest uppercase">{t.warmlyInvited}</p>
+                    </div>
+                )}
+                {!inviteeName && (
+                    <p className="text-[#D4AF37] tracking-[0.4em] uppercase text-[10px] font-semibold">
+                        {t.togetherWithFamilies}
+                    </p>
+                )}
                 <div className="text-white/60 space-y-1 text-xs uppercase tracking-widest leading-relaxed font-light">
                     <p>{brideFather} & {brideMother}</p>
                     <p>{t.and}</p>

@@ -10,7 +10,8 @@ export interface TemplateProps {
     venue: string;
     poruwaTime?: string;
     rsvpDate?: string;
-    language: 'en' | 'si';
+    language: 'en' | 'si' | 'ta';
+    inviteeName?: string;
     message?: string;
     rsvpEmail?: string;
     // Keep older fields for backwards compatibility during refactor if needed

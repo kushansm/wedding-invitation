@@ -16,7 +16,8 @@ export const ClassicTemplate: React.FC<TemplateProps> = ({
     rsvpEmail,
     poruwaTime,
     rsvpDate,
-    language
+    language,
+    inviteeName
 }) => {
     const t = translations[language];
     const formattedDate = new Date(date).toLocaleDateString(language === 'si' ? 'si-LK' : 'en-US', {
@@ -35,9 +36,17 @@ export const ClassicTemplate: React.FC<TemplateProps> = ({
             <div className="absolute bottom-6 right-6 w-16 h-16 border-b-2 border-r-2 border-primary/20 pointer-events-none" />
 
             <div className="space-y-4">
-                <h3 className="text-primary font-medium tracking-[0.3em] uppercase text-xs">
-                    {t.weddingOf}
-                </h3>
+                {inviteeName && (
+                    <div className="space-y-1 animate-in fade-in slide-in-from-bottom-2 duration-700">
+                        <span className="text-primary/60 font-serif italic text-lg">{t.dear} {inviteeName},</span>
+                        <p className="text-foreground/40 text-xs tracking-widest uppercase">{t.warmlyInvited}</p>
+                    </div>
+                )}
+                {!inviteeName && (
+                    <h3 className="text-primary font-medium tracking-[0.3em] uppercase text-xs">
+                        {t.weddingOf}
+                    </h3>
+                )}
 
                 <div className="text-sm font-sans text-foreground/60 space-y-1 lowercase italic">
                     <p>{brideFather} & {brideMother}</p>

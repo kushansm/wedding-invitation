@@ -23,8 +23,9 @@ export default function CreatePage() {
         rsvpDate: "2024-12-01",
         rsvpEmail: "wedding@example.com",
         message: "We're getting married!",
-        template: "classic" as any,
+        template: "classic",
         language: "en",
+        inviteeName: "Honored Guest",
     });
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -32,7 +33,7 @@ export default function CreatePage() {
         setFormData((prev) => ({ ...prev, [name]: value }));
     };
 
-    const handleLanguageChange = (lang: 'en' | 'si') => {
+    const handleLanguageChange = (lang: 'en' | 'si' | 'ta') => {
         setFormData((prev) => ({ ...prev, language: lang }));
     };
 
@@ -85,16 +86,16 @@ export default function CreatePage() {
                         <div className="space-y-2">
                             <label className="text-[10px] font-bold uppercase tracking-widest text-primary/60">Language</label>
                             <div className="flex gap-1 bg-gray-50 p-1 rounded-xl border border-black/5">
-                                {['en', 'si'].map((lang) => (
+                                {['en', 'si', 'ta'].map((lang) => (
                                     <button
                                         key={lang}
-                                        onClick={() => handleLanguageChange(lang as 'en' | 'si')}
-                                        className={`flex-1 py-2 rounded-lg text-xs font-medium transition-all ${formData.language === lang
-                                                ? 'bg-white shadow-sm text-primary scale-105'
-                                                : 'text-foreground/40 hover:text-foreground/60'
+                                        onClick={() => handleLanguageChange(lang as 'en' | 'si' | 'ta')}
+                                        className={`flex-1 py-1.5 rounded-lg text-[10px] font-medium transition-all ${formData.language === lang
+                                            ? 'bg-white shadow-sm text-primary scale-105'
+                                            : 'text-foreground/40 hover:text-foreground/60'
                                             }`}
                                     >
-                                        {lang === 'en' ? 'EN' : 'සිංහල'}
+                                        {lang === 'en' ? 'EN' : lang === 'si' ? 'සිංහල' : 'தமிழ்'}
                                     </button>
                                 ))}
                             </div>
@@ -145,6 +146,18 @@ export default function CreatePage() {
                         <input type="text" name="venue" value={formData.venue} onChange={handleChange} placeholder="The Venue" className="w-full p-3 rounded-xl border border-black/5 bg-gray-50 focus:border-primary outline-none text-sm" />
                     </div>
 
+                    <div className="flex items-center gap-2">
+                        <div className="h-px bg-primary/10 flex-1" />
+                        <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-primary/40">Personalization</span>
+                        <div className="h-px bg-primary/10 flex-1" />
+                    </div>
+                    <div className="space-y-4">
+                        <div className="space-y-1">
+                            <label className="text-[9px] text-foreground/40 px-2 uppercase tracking-widest">Invitee name</label>
+                            <input type="text" name="inviteeName" value={formData.inviteeName} onChange={handleChange} placeholder="Dear [Name]" className="w-full p-3 rounded-xl border border-black/5 bg-gray-50 focus:border-primary outline-none text-sm" />
+                        </div>
+                    </div>
+
                     <div className="space-y-4">
                         <div className="flex items-center gap-2">
                             <div className="h-px bg-primary/10 flex-1" />
@@ -166,13 +179,26 @@ export default function CreatePage() {
                     </div>
                 </div>
 
-                <button
-                    onClick={goToPreview}
-                    className="w-full bg-primary text-background py-4 rounded-2xl font-bold hover:bg-primary/95 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group"
-                >
-                    <span>Preview Full Screen</span>
-                    <span className="group-hover:translate-x-1 transition-transform">→</span>
-                </button>
+                <div className="flex flex-col gap-3">
+                    <button
+                        onClick={goToPreview}
+                        className="w-full bg-primary text-background py-4 rounded-2xl font-bold hover:bg-primary/95 transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 group"
+                    >
+                        <span>Preview Full Screen</span>
+                        <span className="group-hover:translate-x-1 transition-transform">→</span>
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            const params = new URLSearchParams(formData as any);
+                            window.open(`/api/og?${params.toString()}`, '_blank');
+                        }}
+                        className="w-full bg-white text-primary border-2 border-primary/20 py-4 rounded-2xl font-bold hover:bg-primary/5 transition-all flex items-center justify-center gap-2"
+                    >
+                        <span>Download as Image</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" /></svg>
+                    </button>
+                </div>
             </div>
 
             {/* Live Preview Area */}

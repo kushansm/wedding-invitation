@@ -14,11 +14,14 @@ export const TraditionalSinhalaTemplate: React.FC<TemplateProps> = ({
     venue,
     poruwaTime,
     rsvpDate,
+    language,
+    inviteeName,
     message,
-    language
+    rsvpEmail
 }) => {
     const t = translations[language];
-    const formattedDate = new Date(date).toLocaleDateString(language === 'si' ? 'si-LK' : 'en-US', {
+    const locale = language === 'si' ? 'si-LK' : (language === 'ta' ? 'ta-LK' : 'en-US');
+    const formattedDate = new Date(date).toLocaleDateString(locale, {
         weekday: "long",
         year: "numeric",
         month: "long",
@@ -71,6 +74,20 @@ export const TraditionalSinhalaTemplate: React.FC<TemplateProps> = ({
             </div>
 
             <div className="w-1/2 h-px bg-[#D4AF37]/50" />
+
+            <div className="space-y-4">
+                {inviteeName && (
+                    <div className="space-y-1 animate-in fade-in slide-in-from-bottom-2 duration-700">
+                        <span className="text-[#D4AF37]/80 font-serif italic text-lg">{t.dear} {inviteeName},</span>
+                        <p className="text-[#D4AF37]/40 text-xs tracking-widest uppercase">{t.warmlyInvited}</p>
+                    </div>
+                )}
+                {!inviteeName && (
+                    <h3 className="text-[#D4AF37] font-medium tracking-[0.3em] uppercase text-xs">
+                        {t.weddingOf}
+                    </h3>
+                )}
+            </div>
 
             <div className="space-y-6">
                 <p className="text-xl md:text-2xl lowercase italic">
