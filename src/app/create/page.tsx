@@ -6,6 +6,7 @@ import { ClassicTemplate } from "@/components/templates/ClassicTemplate";
 import { TraditionalSinhalaTemplate } from "@/components/templates/TraditionalSinhalaTemplate";
 import { ModernLuxuryTemplate } from "@/components/templates/ModernLuxuryTemplate";
 import { TemplateProps } from "@/components/templates/types";
+import { translations } from "@/components/templates/translations";
 
 export default function CreatePage() {
     const router = useRouter();
@@ -204,7 +205,10 @@ export default function CreatePage() {
                             const params = new URLSearchParams(formData as any);
                             const baseUrl = window.location.origin;
                             const previewUrl = `${baseUrl}/preview?${params.toString()}`;
-                            const message = `Dear ${formData.inviteeName || 'Friend'},\n\nYou are warmly invited to celebrate the wedding of ${formData.brideName} & ${formData.groomName}!\n\nView Invitation: ${previewUrl}`;
+                            const t = translations[formData.language];
+                            const greeting = `${t.dear} ${formData.inviteeName || 'Friend'}`;
+                            const body = t.whatsappMessage;
+                            const message = `${greeting},\n\n${body}\n\n${previewUrl}`;
                             window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
                         }}
                         className="w-full bg-[#25D366] text-white py-4 rounded-2xl font-bold hover:bg-[#128C7E] transition-all flex items-center justify-center gap-2 shadow-lg shadow-green-500/20"
