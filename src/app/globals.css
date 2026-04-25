@@ -7,13 +7,36 @@
   --accent: #8b0000;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-primary: var(--primary);
-  --color-accent: var(--accent);
-  --font-serif: var(--font-playfair);
-  --font-sans: var(--font-montserrat);
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-bodoni), var(--font-playfair), ui-serif, Georgia, serif;
+  --font-script: var(--font-great-vibes), cursive;
+
+  --color-primary: #800000;
+  /* Maroon */
+  --color-accent: #D4AF37;
+  /* Gold */
+  --color-canvas: #FDFCF0;
+  /* Parchment */
+}
+
+@layer base {
+  body {
+    @apply bg-canvas text-stone-900;
+  }
+}
+
+@layer utilities {
+  .animate-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .animate-reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 body {
@@ -23,6 +46,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-playfair);
 }
