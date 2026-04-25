@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { ClassicTemplate } from "@/components/templates/ClassicTemplate";
 import { TraditionalSinhalaTemplate } from "@/components/templates/TraditionalSinhalaTemplate";
+import { TraditionalKandyanTemplate } from "@/components/templates/TraditionalKandyanTemplate";
 import { ModernLuxuryTemplate } from "@/components/templates/ModernLuxuryTemplate";
 import { TemplateProps } from "@/components/templates/types";
 
@@ -35,6 +36,8 @@ function InvitationContent() {
         switch (template) {
             case "sinhala":
                 return <TraditionalSinhalaTemplate {...props} />;
+            case "kandyan":
+                return <TraditionalKandyanTemplate {...props} />;
             case "luxury":
                 return <ModernLuxuryTemplate {...props} />;
             case "classic":

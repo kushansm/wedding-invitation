@@ -4,6 +4,7 @@ import { useState, Suspense } from "react";
 import { useRouter } from "next/navigation";
 import { ClassicTemplate } from "@/components/templates/ClassicTemplate";
 import { TraditionalSinhalaTemplate } from "@/components/templates/TraditionalSinhalaTemplate";
+import { TraditionalKandyanTemplate } from "@/components/templates/TraditionalKandyanTemplate";
 import { ModernLuxuryTemplate } from "@/components/templates/ModernLuxuryTemplate";
 import { TemplateProps } from "@/components/templates/types";
 import { translations } from "@/components/templates/translations";
@@ -51,6 +52,8 @@ export default function CreatePage() {
         switch (formData.template) {
             case "sinhala":
                 return <TraditionalSinhalaTemplate {...formData} />;
+            case "kandyan":
+                return <TraditionalKandyanTemplate {...formData} />;
             case "luxury":
                 return <ModernLuxuryTemplate {...formData} />;
             case "classic":
@@ -80,7 +83,8 @@ export default function CreatePage() {
                                 className="w-full p-3 rounded-xl border border-black/5 bg-gray-50 focus:border-primary outline-none text-sm transition-all shadow-sm"
                             >
                                 <option value="classic">Classic</option>
-                                <option value="sinhala">Traditional Sinhala</option>
+                                <option value="kandyan">Traditional Kandyan (New)</option>
+                                <option value="sinhala">Traditional Sinhala (Red)</option>
                                 <option value="luxury">Modern Luxury</option>
                             </select>
                         </div>
