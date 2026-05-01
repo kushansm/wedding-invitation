@@ -118,9 +118,30 @@ export const TraditionalSinhalaTemplate: React.FC<TemplateProps> = ({
     return (
         <div className="w-full max-w-2xl bg-[#8B0000] text-[#D4AF37] min-h-screen flex flex-col items-center overflow-hidden font-serif relative shadow-[0_30px_60px_rgba(0,0,0,0.4)] border-[12px] border-double border-[#D4AF37]/30 before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] before:opacity-10 before:pointer-events-none">
             {/* Cultural Motifs Background */}
-            <div className="absolute inset-0 pointer-events-none opacity-[0.05]">
-                <div className="absolute -top-10 -left-10 w-64 h-64"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0z" /></svg></div>
-                <div className="absolute -bottom-10 -right-10 w-64 h-64 rotate-180"><svg viewBox="0 0 100 100" fill="currentColor"><path d="M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0z" /></svg></div>
+            <div className="absolute inset-0 pointer-events-none opacity-[0.08]">
+                {/* Moonstone inspired motif top left */}
+                <div className="absolute -top-20 -left-20 w-80 h-80 text-[#D4AF37]">
+                    <svg viewBox="0 0 200 100" fill="currentColor">
+                        <path d="M0 100 A 100 100 0 0 1 200 100 Z" opacity="0.4" />
+                        <path d="M20 100 A 80 80 0 0 1 180 100 Z" opacity="0.4" />
+                        <path d="M40 100 A 60 60 0 0 1 160 100 Z" opacity="0.4" />
+                        <path d="M60 100 A 40 40 0 0 1 140 100 Z" opacity="0.4" />
+                        <circle cx="100" cy="90" r="5" />
+                    </svg>
+                </div>
+                {/* Liyawel motif bottom right */}
+                <div className="absolute -bottom-20 -right-20 w-96 h-96 rotate-180 text-[#D4AF37]">
+                    <svg viewBox="0 0 200 200" fill="currentColor">
+                        <path d="M200 200 C 200 100, 100 0, 0 0 L 0 20 L 80 20 C 120 20, 180 80, 180 180 Z" opacity="0.3" />
+                        <path d="M180 200 C 180 120, 120 60, 40 60 L 40 80 C 100 80, 160 140, 160 200 Z" opacity="0.2" />
+                    </svg>
+                </div>
+                {/* Center Lotus */}
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full flex items-center justify-center opacity-[0.1]">
+                    <svg viewBox="0 0 100 100" className="w-1/2 h-1/2 text-[#D4AF37]" fill="currentColor">
+                        <path d="M50 0 C 60 20, 80 30, 100 50 C 80 70, 60 80, 50 100 C 40 80, 20 70, 0 50 C 20 30, 40 20, 50 0" />
+                    </svg>
+                </div>
             </div>
 
             {/* Section 1: Hero */}
@@ -151,8 +172,9 @@ export const TraditionalSinhalaTemplate: React.FC<TemplateProps> = ({
             </Section>
 
             {/* Section 2: Countdown */}
-            <Section className="w-full py-16 px-8 bg-[#660000]/50 border-y border-[#D4AF37]/10 flex flex-col items-center">
-                <span className="text-[10px] uppercase tracking-[0.3em] mb-4 opacity-50">Counting down to the big day</span>
+            <Section className="w-full py-16 px-8 bg-black/20 border-y border-[#D4AF37]/20 flex flex-col items-center relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[#D4AF37]/5 to-transparent pointer-events-none" />
+                <span className="text-[10px] uppercase tracking-[0.3em] mb-4 text-[#D4AF37] font-bold">Counting down to the big day</span>
                 <CountdownTimer targetDate={date} />
             </Section>
 
@@ -202,33 +224,41 @@ export const TraditionalSinhalaTemplate: React.FC<TemplateProps> = ({
             </Section>
 
             {/* Section 6: RSVP */}
-            <Section className="w-full py-20 px-8 flex flex-col items-center bg-[#660000]/30 border-y border-[#D4AF37]/10">
-                <div className="w-full max-w-sm space-y-8">
+            <Section className="w-full py-20 px-8 flex flex-col items-center bg-black/30 border-y border-[#D4AF37]/20">
+                <div className="w-full max-w-sm space-y-8 bg-[#8B0000]/50 p-8 rounded-3xl border border-[#D4AF37]/10 backdrop-blur-sm shadow-2xl">
                     <div className="text-center space-y-2">
-                        <h2 className="text-2xl uppercase tracking-widest">Please Confirm</h2>
-                        <p className="text-[10px] opacity-60 tracking-[0.2em]">Kindly respond by {rsvpDate || '20 April 2026'}</p>
+                        <h2 className="text-3xl font-bold uppercase tracking-widest text-[#D4AF37]">Please Confirm</h2>
+                        <p className="text-[10px] text-[#D4AF37]/60 tracking-[0.2em]">Kindly respond by {rsvpDate || '20 April 2026'}</p>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                         <div className="flex gap-4">
-                            <button onClick={() => setRsvpAttendance('joyfully')} className={`flex-1 py-3 border border-[#D4AF37]/30 rounded text-xs tracking-widest transition-all ${rsvpAttendance === 'joyfully' ? 'bg-[#D4AF37] text-[#8B0000]' : 'opacity-60'}`}>JOYFULLY</button>
-                            <button onClick={() => setRsvpAttendance('regretfully')} className={`flex-1 py-3 border border-[#D4AF37]/30 rounded text-xs tracking-widest transition-all ${rsvpAttendance === 'regretfully' ? 'bg-[#D4AF37] text-[#8B0000]' : 'opacity-60'}`}>REGRETFULLY</button>
+                            <button onClick={() => setRsvpAttendance('joyfully')} className={`flex-1 py-4 border-2 rounded-xl text-xs font-bold tracking-widest transition-all ${rsvpAttendance === 'joyfully' ? 'bg-[#D4AF37] text-[#8B0000] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/20' : 'border-[#D4AF37]/20 text-[#D4AF37]/60 hover:border-[#D4AF37]/40'}`}>JOYFULLY</button>
+                            <button onClick={() => setRsvpAttendance('regretfully')} className={`flex-1 py-4 border-2 rounded-xl text-xs font-bold tracking-widest transition-all ${rsvpAttendance === 'regretfully' ? 'bg-[#660000] text-[#D4AF37] border-[#660000]' : 'border-[#D4AF37]/20 text-[#D4AF37]/60 hover:border-[#D4AF37]/40'}`}>REGRETFULLY</button>
                         </div>
-                        <input value={rsvpName} onChange={(e) => setRsvpName(e.target.value)} type="text" placeholder="Full Name" className="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 text-sm focus:border-[#D4AF37] outline-none transition-all placeholder:text-[#D4AF37]/20" />
-                        <input value={rsvpPhone} onChange={(e) => setRsvpPhone(e.target.value)} type="text" placeholder="Phone Number" className="w-full bg-transparent border-b border-[#D4AF37]/30 py-3 text-sm focus:border-[#D4AF37] outline-none transition-all placeholder:text-[#D4AF37]/20" />
+                        <input value={rsvpName} onChange={(e) => setRsvpName(e.target.value)} type="text" placeholder="Full Name" className="w-full bg-black/20 border-2 border-[#D4AF37]/10 rounded-xl px-4 py-4 text-sm focus:border-[#D4AF37]/40 outline-none transition-all placeholder:text-[#D4AF37]/20" />
+                        <input value={rsvpPhone} onChange={(e) => setRsvpPhone(e.target.value)} type="text" placeholder="Phone Number" className="w-full bg-black/20 border-2 border-[#D4AF37]/10 rounded-xl px-4 py-4 text-sm focus:border-[#D4AF37]/40 outline-none transition-all placeholder:text-[#D4AF37]/20" />
 
-                        <div className="grid grid-cols-2 gap-2 pt-4">
-                            {['Vegetarian', 'Vegan', 'Gluten-Free', 'No Pork/Beef'].map(diet => (
-                                <label key={diet} className="flex items-center gap-2 cursor-pointer group">
-                                    <input type="checkbox" checked={rsvpDietary.includes(diet)} onChange={() => toggleDietary(diet)} className="peer appearance-none w-4 h-4 border border-[#D4AF37]/30 checked:bg-[#D4AF37] transition-all rounded-sm" />
-                                    <span className="text-[10px] opacity-60 group-hover:opacity-100 transition-opacity">{diet}</span>
-                                </label>
-                            ))}
+                        <div className="space-y-4 pt-2">
+                            <p className="text-[10px] uppercase tracking-widest text-[#D4AF37]/60 font-bold ml-2">Dietary Requirements</p>
+                            <div className="grid grid-cols-2 gap-3 px-2">
+                                {['Vegetarian', 'Vegan', 'Gluten-Free', 'No Pork/Beef'].map(diet => (
+                                    <label key={diet} className="flex items-center gap-3 cursor-pointer group">
+                                        <div className="relative flex items-center justify-center">
+                                            <input type="checkbox" checked={rsvpDietary.includes(diet)} onChange={() => toggleDietary(diet)} className="peer appearance-none w-5 h-5 border-2 border-[#D4AF37]/20 rounded-md checked:bg-[#D4AF37] transition-all" />
+                                            <svg className="absolute w-3 h-3 text-[#8B0000] pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity font-bold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        <span className="text-[11px] font-medium text-[#D4AF37]/60 group-hover:text-[#D4AF37] transition-colors">{diet}</span>
+                                    </label>
+                                ))}
+                            </div>
                         </div>
                     </div>
 
-                    <button onClick={handleWhatsAppConfirm} className="w-full bg-[#D4AF37] text-[#8B0000] py-4 rounded font-bold text-xs tracking-[0.3em] shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all">
-                        CONFIRM VIA WHATSAPP
+                    <button onClick={handleWhatsAppConfirm} className="w-full bg-[#D4AF37] text-[#8B0000] py-5 rounded-xl font-black text-xs tracking-[0.4em] shadow-xl shadow-black/40 hover:scale-[1.02] active:scale-[0.98] transition-all uppercase">
+                        Confirm on WhatsApp
                     </button>
                 </div>
             </Section>

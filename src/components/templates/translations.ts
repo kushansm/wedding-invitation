@@ -16,6 +16,8 @@ export const translations = {
         ayubowan: "Ayubowan",
         dear: "Dear",
         warmlyInvited: "You are warmly invited to celebrate the union of",
+        saveTheDate: "Save the Date",
+        specialDay: "for our special day",
         whatsappMessage: "You are warmly invited to celebrate our wedding! View invitation here:",
     },
     si: {
@@ -35,6 +37,8 @@ export const translations = {
         ayubowan: "ආයුබෝවන්",
         dear: "හිතවත්",
         warmlyInvited: "පැවැත්වෙන මංගල මහෝත්සවය සඳහා ඔබට ඉතා ආදරයෙන් ආරාධනා කර සිටිමු.",
+        saveTheDate: "දිනය වෙන්කරවා ගන්න",
+        specialDay: "අපගේ සුවිශේෂී දිනය වෙනුවෙන්",
         whatsappMessage: "අපගේ මංගල උත්සවය සඳහා ඔබට ඉතා ආදරයෙන් ආරාධනා කර සිටිමු! ආරාධනා පත්‍රය මෙතැනින්:",
     },
     ta: {
