@@ -87,9 +87,15 @@ export const ClassicTemplate: React.FC<TemplateProps> = ({
     return (
         <div className="w-full max-w-2xl bg-white min-h-screen flex flex-col items-center overflow-hidden font-serif text-stone-800 relative shadow-2xl border-[16px] border-double border-stone-100 before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] before:opacity-30 before:pointer-events-none">
             {/* Lotus Motif Background */}
-            <div className="absolute top-0 right-0 p-8 opacity-[0.05]">
+            <div className="absolute top-0 right-0 p-8 opacity-[0.08] text-stone-300">
                 <svg width="150" height="150" viewBox="0 0 100 100" fill="currentColor">
-                    <path d="M50 0C22.4 0 0 22.4 0 50s22.4 50 50 50 50-22.4 50-50S77.6 0 50 0zm0 90C28 90 10 72 10 50S28 10 50 10s40 18 40 40-18 40-40 40z" />
+                    <path d="M50 0 C 55 20, 75 20, 100 20 C 80 20, 80 40, 80 50 C 80 60, 80 80, 100 80 C 75 80, 55 80, 50 100 C 45 80, 25 80, 0 80 C 20 80, 20 60, 20 50 C 20 40, 20 20, 0 20 C 25 20, 45 20, 50 0" />
+                </svg>
+            </div>
+            {/* Subtle Liyawel at bottom left */}
+            <div className="absolute bottom-0 left-0 p-8 opacity-[0.05] text-stone-300">
+                <svg width="200" height="100" viewBox="0 0 200 100" fill="currentColor">
+                    <path d="M0 100 C 50 100, 50 50, 100 50 C 150 50, 150 0, 200 0 L 200 10 L 110 10 C 60 10, 60 60, 10 60 L 0 60 Z" />
                 </svg>
             </div>
 
@@ -165,24 +171,43 @@ export const ClassicTemplate: React.FC<TemplateProps> = ({
             </Section>
 
             {/* Section 6: RSVP */}
-            <Section className="w-full py-20 px-8 flex flex-col items-center bg-stone-50/30 border-y border-stone-100">
-                <div className="w-full max-w-sm space-y-8">
-                    <div className="text-center">
-                        <h2 className="text-2xl uppercase tracking-widest font-serif text-stone-800">Reservation</h2>
-                        <p className="text-[10px] text-stone-400 mt-2 uppercase tracking-widest">Kindly respond by {rsvpDate || '20 April 2026'}</p>
+            <Section className="w-full py-20 px-8 flex flex-col items-center bg-stone-50/50 border-y border-stone-100">
+                <div className="w-full max-w-sm space-y-10">
+                    <div className="text-center space-y-2">
+                        <h2 className="text-3xl uppercase tracking-widest font-serif text-stone-800">Reservation</h2>
+                        <p className="text-[10px] text-stone-400 uppercase tracking-widest">Kindly respond by {rsvpDate || '20 April 2026'}</p>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-6">
                         <div className="flex gap-4">
-                            <button onClick={() => setRsvpAttendance('joyfully')} className={`flex-1 py-3 border border-stone-200 rounded text-[10px] tracking-widest transition-all ${rsvpAttendance === 'joyfully' ? 'bg-stone-800 text-white' : 'text-stone-400'}`}>JOYFULLY</button>
-                            <button onClick={() => setRsvpAttendance('regretfully')} className={`flex-1 py-3 border border-stone-200 rounded text-[10px] tracking-widest transition-all ${rsvpAttendance === 'regretfully' ? 'bg-stone-800 text-white' : 'text-stone-400'}`}>REGRETFULLY</button>
+                            <button onClick={() => setRsvpAttendance('joyfully')} className={`flex-1 py-4 border border-stone-200 rounded-lg text-[10px] font-bold tracking-widest transition-all ${rsvpAttendance === 'joyfully' ? 'bg-stone-800 text-white shadow-lg' : 'text-stone-400 hover:bg-stone-50'}`}>JOYFULLY</button>
+                            <button onClick={() => setRsvpAttendance('regretfully')} className={`flex-1 py-4 border border-stone-200 rounded-lg text-[10px] font-bold tracking-widest transition-all ${rsvpAttendance === 'regretfully' ? 'bg-stone-800 text-white shadow-lg' : 'text-stone-400 hover:bg-stone-50'}`}>REGRETFULLY</button>
                         </div>
-                        <input value={rsvpName} onChange={(e) => setRsvpName(e.target.value)} type="text" placeholder="Full Name" className="w-full bg-transparent border-b border-stone-200 py-3 text-sm focus:border-stone-800 outline-none transition-all" />
-                        <input value={rsvpPhone} onChange={(e) => setRsvpPhone(e.target.value)} type="text" placeholder="Phone Number" className="w-full bg-transparent border-b border-stone-200 py-3 text-sm focus:border-stone-800 outline-none transition-all" />
+                        <input value={rsvpName} onChange={(e) => setRsvpName(e.target.value)} type="text" placeholder="Full Name" className="w-full bg-stone-50 border-b border-stone-200 px-4 py-4 text-sm focus:border-stone-800 outline-none transition-all" />
+                        <input value={rsvpPhone} onChange={(e) => setRsvpPhone(e.target.value)} type="text" placeholder="Phone Number" className="w-full bg-stone-50 border-b border-stone-200 px-4 py-4 text-sm focus:border-stone-800 outline-none transition-all" />
+
+                        <div className="space-y-4 pt-2">
+                            <p className="text-[10px] uppercase tracking-widest text-stone-400 font-bold ml-2">Dietary Requirements</p>
+                            <div className="grid grid-cols-2 gap-4 px-2">
+                                {['Vegetarian', 'Vegan', 'Gluten-Free', 'No Pork/Beef'].map(diet => (
+                                    <label key={diet} className="flex items-center gap-3 cursor-pointer group">
+                                        <div className="relative flex items-center justify-center">
+                                            <input type="checkbox" checked={rsvpDietary.includes(diet)} onChange={() => {
+                                                setRsvpDietary(prev => prev.includes(diet) ? prev.filter(d => d !== diet) : [...prev, diet]);
+                                            }} className="peer appearance-none w-5 h-5 border border-stone-200 rounded-md checked:bg-stone-800 transition-all" />
+                                            <svg className="absolute w-3 h-3 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                                            </svg>
+                                        </div>
+                                        <span className="text-[11px] font-medium text-stone-500 group-hover:text-stone-800 transition-colors">{diet}</span>
+                                    </label>
+                                ))}
+                            </div>
+                        </div>
                     </div>
 
-                    <button onClick={handleWhatsAppConfirm} className="w-full bg-stone-800 text-white py-4 rounded-full font-bold text-[10px] tracking-[0.3em] shadow-xl hover:bg-stone-900 transition-all">
-                        CONFIRM ATTENDANCE
+                    <button onClick={handleWhatsAppConfirm} className="w-full bg-stone-800 text-white py-5 rounded-full font-bold text-[10px] tracking-[0.4em] shadow-xl hover:bg-stone-900 hover:scale-[1.02] active:scale-[0.98] transition-all uppercase">
+                        Confirm Attendance
                     </button>
                 </div>
             </Section>
