@@ -17,4 +17,11 @@ export interface TemplateProps {
     // Keep older fields for backwards compatibility during refactor if needed
     brideParents?: string;
     template: 'classic' | 'sinhala' | 'luxury' | 'kandyan';
+    locationDetails?: {
+        placeName: string;
+        address: string;
+        latitude: number;
+        longitude: number;
+        placeId: string;
+    };
 }

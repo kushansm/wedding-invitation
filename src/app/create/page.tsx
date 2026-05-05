@@ -8,6 +8,13 @@ import { TraditionalKandyanTemplate } from "@/components/templates/TraditionalKa
 import { ModernLuxuryTemplate } from "@/components/templates/ModernLuxuryTemplate";
 import { TemplateProps } from "@/components/templates/types";
 import { translations } from "@/components/templates/translations";
+import dynamic from "next/dynamic";
+import type { LocationDetails } from "@/components/LocationPicker";
+
+const LocationPicker = dynamic(() => import('@/components/LocationPicker').then(mod => mod.LocationPicker), { 
+    ssr: false,
+    loading: () => <div className="w-full h-[250px] rounded-xl border border-black/5 bg-gray-50 animate-pulse flex items-center justify-center text-xs text-primary/40 font-medium tracking-widest uppercase">Loading map...</div>
+});
 
 export default function CreatePage() {
     const router = useRouter();
@@ -41,6 +48,14 @@ export default function CreatePage() {
 
     const handleTemplateChange = (template: string) => {
         setFormData((prev) => ({ ...prev, template: template as any }));
+    };
+
+    const handleLocationChange = (location: LocationDetails) => {
+        setFormData((prev) => ({
+            ...prev,
+            locationDetails: location,
+            venue: location.placeName || prev.venue
+        }));
     };
 
     const goToPreview = () => {
@@ -148,7 +163,10 @@ export default function CreatePage() {
                             <input type="date" name="date" value={formData.date} onChange={handleChange} className="w-full p-3 rounded-xl border border-black/5 bg-gray-50 focus:border-primary outline-none text-sm" />
                             <input type="time" name="time" value={formData.time} onChange={handleChange} className="w-full p-3 rounded-xl border border-black/5 bg-gray-50 focus:border-primary outline-none text-sm" />
                         </div>
-                        <input type="text" name="venue" value={formData.venue} onChange={handleChange} placeholder="The Venue" className="w-full p-3 rounded-xl border border-black/5 bg-gray-50 focus:border-primary outline-none text-sm" />
+                        <LocationPicker 
+                            value={formData.locationDetails} 
+                            onChange={handleLocationChange} 
+                        />
                     </div>
 
                     <div className="flex items-center gap-2">

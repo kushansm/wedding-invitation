@@ -100,20 +100,16 @@ export const TraditionalSinhalaTemplate: React.FC<TemplateProps> = ({
     const [rsvpName, setRsvpName] = useState('');
     const [rsvpPhone, setRsvpPhone] = useState('');
     const [rsvpAttendance, setRsvpAttendance] = useState('joyfully');
-    const [rsvpDietary, setRsvpDietary] = useState<string[]>([]);
 
     const handleWhatsAppConfirm = () => {
         const text = `Hi ${brideName} & ${groomName}, I'm confirming my attendance!
 👤 Name: ${rsvpName}
 📞 Phone: ${rsvpPhone}
-✅ Status: ${rsvpAttendance === 'joyfully' ? 'Joyfully Attending' : 'Regretfully Declining'}
-🍽️ Dietary: ${rsvpDietary.length > 0 ? rsvpDietary.join(', ') : 'None'}`;
+✅ Status: ${rsvpAttendance === 'joyfully' ? 'Able to Attend' : 'Not Able to Attend'}`;
         window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     };
 
-    const toggleDietary = (diet: string) => {
-        setRsvpDietary(prev => prev.includes(diet) ? prev.filter(d => d !== diet) : [...prev, diet]);
-    };
+
 
     return (
         <div className="w-full max-w-2xl bg-[#8B0000] text-[#D4AF37] min-h-screen flex flex-col items-center overflow-hidden font-serif relative shadow-[0_30px_60px_rgba(0,0,0,0.4)] border-[12px] border-double border-[#D4AF37]/30 before:absolute before:inset-0 before:bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] before:opacity-10 before:pointer-events-none">
@@ -233,28 +229,13 @@ export const TraditionalSinhalaTemplate: React.FC<TemplateProps> = ({
 
                     <div className="space-y-6">
                         <div className="flex gap-4">
-                            <button onClick={() => setRsvpAttendance('joyfully')} className={`flex-1 py-4 border-2 rounded-xl text-xs font-bold tracking-widest transition-all ${rsvpAttendance === 'joyfully' ? 'bg-[#D4AF37] text-[#8B0000] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/20' : 'border-[#D4AF37]/20 text-[#D4AF37]/60 hover:border-[#D4AF37]/40'}`}>JOYFULLY</button>
-                            <button onClick={() => setRsvpAttendance('regretfully')} className={`flex-1 py-4 border-2 rounded-xl text-xs font-bold tracking-widest transition-all ${rsvpAttendance === 'regretfully' ? 'bg-[#660000] text-[#D4AF37] border-[#660000]' : 'border-[#D4AF37]/20 text-[#D4AF37]/60 hover:border-[#D4AF37]/40'}`}>REGRETFULLY</button>
+                            <button onClick={() => setRsvpAttendance('joyfully')} className={`flex-1 py-4 border-2 rounded-xl text-xs font-bold tracking-widest transition-all ${rsvpAttendance === 'joyfully' ? 'bg-[#D4AF37] text-[#8B0000] border-[#D4AF37] shadow-lg shadow-[#D4AF37]/20' : 'border-[#D4AF37]/20 text-[#D4AF37]/60 hover:border-[#D4AF37]/40'}`}>I AM ABLE TO ATTEND</button>
+                            <button onClick={() => setRsvpAttendance('regretfully')} className={`flex-1 py-4 border-2 rounded-xl text-xs font-bold tracking-widest transition-all ${rsvpAttendance === 'regretfully' ? 'bg-[#660000] text-[#D4AF37] border-[#660000]' : 'border-[#D4AF37]/20 text-[#D4AF37]/60 hover:border-[#D4AF37]/40'}`}>NOT ABLE TO ATTEND</button>
                         </div>
                         <input value={rsvpName} onChange={(e) => setRsvpName(e.target.value)} type="text" placeholder="Full Name" className="w-full bg-black/20 border-2 border-[#D4AF37]/10 rounded-xl px-4 py-4 text-sm focus:border-[#D4AF37]/40 outline-none transition-all placeholder:text-[#D4AF37]/20" />
                         <input value={rsvpPhone} onChange={(e) => setRsvpPhone(e.target.value)} type="text" placeholder="Phone Number" className="w-full bg-black/20 border-2 border-[#D4AF37]/10 rounded-xl px-4 py-4 text-sm focus:border-[#D4AF37]/40 outline-none transition-all placeholder:text-[#D4AF37]/20" />
 
-                        <div className="space-y-4 pt-2">
-                            <p className="text-[10px] uppercase tracking-widest text-[#D4AF37]/60 font-bold ml-2">Dietary Requirements</p>
-                            <div className="grid grid-cols-2 gap-3 px-2">
-                                {['Vegetarian', 'Vegan', 'Gluten-Free', 'No Pork/Beef'].map(diet => (
-                                    <label key={diet} className="flex items-center gap-3 cursor-pointer group">
-                                        <div className="relative flex items-center justify-center">
-                                            <input type="checkbox" checked={rsvpDietary.includes(diet)} onChange={() => toggleDietary(diet)} className="peer appearance-none w-5 h-5 border-2 border-[#D4AF37]/20 rounded-md checked:bg-[#D4AF37] transition-all" />
-                                            <svg className="absolute w-3 h-3 text-[#8B0000] pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity font-bold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                        <span className="text-[11px] font-medium text-[#D4AF37]/60 group-hover:text-[#D4AF37] transition-colors">{diet}</span>
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
+
                     </div>
 
                     <button onClick={handleWhatsAppConfirm} className="w-full bg-[#D4AF37] text-[#8B0000] py-5 rounded-xl font-black text-xs tracking-[0.4em] shadow-xl shadow-black/40 hover:scale-[1.02] active:scale-[0.98] transition-all uppercase">
