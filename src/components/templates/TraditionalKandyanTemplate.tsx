@@ -128,22 +128,14 @@ export const TraditionalKandyanTemplate: React.FC<TemplateProps> = ({
     const [rsvpName, setRsvpName] = useState('');
     const [rsvpPhone, setRsvpPhone] = useState('');
     const [rsvpAttendance, setRsvpAttendance] = useState('joyfully');
-    const [rsvpDietary, setRsvpDietary] = useState<string[]>([]);
     const [rsvpMessage, setRsvpMessage] = useState('');
-
-    const toggleDietary = (diet: string) => {
-        setRsvpDietary(prev =>
-            prev.includes(diet) ? prev.filter(d => d !== diet) : [...prev, diet]
-        );
-    };
 
     const handleWhatsAppConfirm = () => {
         const text = `Hi ${brideName} & ${groomName}, I'm confirming my attendance for your wedding!
         
 👤 Name: ${rsvpName}
 📞 Phone: ${rsvpPhone}
-✅ Attending: ${rsvpAttendance === 'joyfully' ? 'Joyfully' : 'Regretfully'}
-🍽️ Dietary: ${rsvpDietary.length > 0 ? rsvpDietary.join(', ') : 'None'}
+✅ Attending: ${rsvpAttendance === 'joyfully' ? 'Able to Attend' : 'Not Able to Attend'}
 ✉️ Message: ${rsvpMessage || 'No additional message'}
 
 Looking forward to the big day!`;
@@ -345,13 +337,13 @@ Looking forward to the big day!`;
                                     onClick={() => setRsvpAttendance('joyfully')}
                                     className={`flex-1 py-4 rounded-2xl text-xs font-bold tracking-widest transition-all border-2 ${rsvpAttendance === 'joyfully' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' : 'bg-white text-stone-400 border-stone-100 hover:border-accent/20'}`}
                                 >
-                                    JOYFULLY
+                                    I AM ABLE TO ATTEND
                                 </button>
                                 <button
                                     onClick={() => setRsvpAttendance('regretfully')}
                                     className={`flex-1 py-4 rounded-2xl text-xs font-bold tracking-widest transition-all border-2 ${rsvpAttendance === 'regretfully' ? 'bg-primary text-white border-primary shadow-lg shadow-primary/20' : 'bg-white text-stone-400 border-stone-100 hover:border-accent/20'}`}
                                 >
-                                    REGRETFULLY
+                                    NOT ABLE TO ATTEND
                                 </button>
                             </div>
                         </div>
@@ -379,27 +371,7 @@ Looking forward to the big day!`;
                                 />
                             </div>
 
-                            <div className="space-y-5">
-                                <p className="text-[10px] uppercase tracking-[0.3em] font-black text-stone-300 ml-4">Dietary Requirements</p>
-                                <div className="grid grid-cols-2 gap-4 px-2">
-                                    {['Vegetarian', 'Vegan', 'Gluten-Free', 'No Pork/Beef'].map(diet => (
-                                        <label key={diet} className="flex items-center gap-4 cursor-pointer group">
-                                            <div className="relative flex items-center justify-center">
-                                                <input
-                                                    type="checkbox"
-                                                    checked={rsvpDietary.includes(diet)}
-                                                    onChange={() => toggleDietary(diet)}
-                                                    className="peer appearance-none w-6 h-6 rounded-lg border-2 border-stone-100 checked:bg-primary checked:border-primary transition-all shadow-sm"
-                                                />
-                                                <svg className="absolute w-4 h-4 text-white pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                                </svg>
-                                            </div>
-                                            <span className="text-[11px] font-bold text-stone-400 group-hover:text-primary transition-colors uppercase tracking-wider">{diet}</span>
-                                        </label>
-                                    ))}
-                                </div>
-                            </div>
+
 
                             <div className="space-y-3">
                                 <label className="text-[10px] uppercase tracking-[0.3em] font-black text-stone-300 ml-4">Message for the Couple</label>
