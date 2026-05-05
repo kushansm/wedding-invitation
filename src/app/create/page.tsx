@@ -66,17 +66,9 @@ export default function CreatePage() {
 
     const handleSaveInvitation = async () => {
         setIsSaving(true);
-        // Simulate a delay for better UX
         await new Promise(resolve => setTimeout(resolve, 800));
-        try {
-            // Encode the entire form data into the ID so it works on Vercel without a DB
-            const id = btoa(unescape(encodeURIComponent(JSON.stringify(formData))));
-            setSavedId(id);
-        } catch (e) {
-            alert('An error occurred while saving.');
-        } finally {
-            setIsSaving(false);
-        }
+        setSavedId("active"); // Use a simple flag since data is in the URL now
+        setIsSaving(false);
     };
 
     const handleAddGuest = () => {
@@ -91,11 +83,32 @@ export default function CreatePage() {
     };
 
     const sendWhatsAppToGuest = (guest: {name: string, phone: string}) => {
-        if (!savedId) return;
         const baseUrl = window.location.origin;
-        const link = `${baseUrl}/invite/${savedId}`;
+        
+        // Build robust query params
+        const queryParams = new URLSearchParams();
+        Object.entries(formData).forEach(([key, value]) => {
+            if (key !== 'locationDetails' && typeof value === 'string') {
+                queryParams.append(key, value);
+            }
+        });
+        
+        // Add invitee name explicitly
+        queryParams.set("inviteeName", guest.name);
+
+        // Add location details if they exist
+        if (formData.locationDetails) {
+            queryParams.append("lat", formData.locationDetails.latitude.toString());
+            queryParams.append("lng", formData.locationDetails.longitude.toString());
+            queryParams.append("placeName", formData.locationDetails.placeName);
+            queryParams.append("address", formData.locationDetails.address);
+            if (formData.locationDetails.placeId) {
+                queryParams.append("placeId", formData.locationDetails.placeId);
+            }
+        }
+
+        const link = `${baseUrl}/invite?${queryParams.toString()}`;
         const message = `Hi ${guest.name}, you are invited to our wedding. View here: ${link}`;
-        // Basic phone number sanitization
         const phone = guest.phone.replace(/[^0-9]/g, '');
         window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`, '_blank');
     };
