@@ -15,26 +15,18 @@ export default function InvitePage() {
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
-        if (!params.id) return;
+        if (!params.id || typeof params.id !== 'string') return;
 
-        const fetchInvitation = async () => {
-            try {
-                const res = await fetch(`/api/invitations/${params.id}`);
-                const json = await res.json();
-                
-                if (json.success) {
-                    setData(json.data);
-                } else {
-                    setError(json.error || "Failed to load invitation.");
-                }
-            } catch (err) {
-                setError("An error occurred while loading the invitation.");
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchInvitation();
+        try {
+            // Decode the data directly from the ID string
+            const decodedData = JSON.parse(decodeURIComponent(escape(atob(params.id))));
+            setData(decodedData);
+        } catch (err) {
+            console.error("Decoding error:", err);
+            setError("The invitation link is invalid or corrupted.");
+        } finally {
+            setLoading(false);
+        }
     }, [params.id]);
 
     if (loading) {

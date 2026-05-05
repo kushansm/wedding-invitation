@@ -66,18 +66,12 @@ export default function CreatePage() {
 
     const handleSaveInvitation = async () => {
         setIsSaving(true);
+        // Simulate a delay for better UX
+        await new Promise(resolve => setTimeout(resolve, 800));
         try {
-            const res = await fetch('/api/invitations', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(formData)
-            });
-            const data = await res.json();
-            if (data.success) {
-                setSavedId(data.id);
-            } else {
-                alert('Failed to save invitation.');
-            }
+            // Encode the entire form data into the ID so it works on Vercel without a DB
+            const id = btoa(unescape(encodeURIComponent(JSON.stringify(formData))));
+            setSavedId(id);
         } catch (e) {
             alert('An error occurred while saving.');
         } finally {
@@ -279,7 +273,7 @@ export default function CreatePage() {
                         disabled={isSaving}
                         className={`w-full py-4 rounded-2xl font-bold transition-all shadow-lg flex items-center justify-center gap-2 ${savedId ? 'bg-green-600 text-white shadow-green-600/20' : 'bg-primary text-background hover:bg-primary/95 shadow-primary/20'}`}
                     >
-                        {isSaving ? 'Saving...' : savedId ? `Saved! ID: ${savedId}` : 'Save Invitation'}
+                        {isSaving ? 'Saving...' : savedId ? `Invitation Saved! ✨` : 'Save Invitation'}
                     </button>
 
                     {savedId && (
