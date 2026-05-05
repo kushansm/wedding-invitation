@@ -1,0 +1,54 @@
+{
+  "ly0e4ehd": {
+    "brideName": "Nayomi Thilakasiri",
+    "groomName": "Rukshan bandara",
+    "brideFather": "Mr.Thilakasiri",
+    "brideMother": "Mr.Bandara",
+    "groomFather": "Mrs.Siriwardhana",
+    "groomMother": "Mrs.Bandara",
+    "date": "2026-06-01",
+    "time": "09:00",
+    "venue": "Seethawaka Regency",
+    "poruwaTime": "10:30",
+    "rsvpDate": "2024-12-01",
+    "rsvpEmail": "wedding@example.com",
+    "message": "We're getting married!",
+    "template": "kandyan",
+    "language": "en",
+    "inviteeName": "kushan",
+    "locationDetails": {
+      "placeName": "Seethawaka Regency",
+      "address": "Seethawaka Regency, Colombo Road, Seethawaka, Avissawella, Colombo District, Western Province, 10700, Sri Lanka",
+      "latitude": 6.9448658,
+      "longitude": 80.1984649,
+      "placeId": "254945183"
+    },
+    "createdAt": "2026-05-05T04:08:30.894Z"
+  },
+  "ypga22rt": {
+    "brideName": "Nayomi Thilakasiri",
+    "groomName": "Rukshan bandara",
+    "brideFather": "Mr.Thilakasiri",
+    "brideMother": "Mr.Bandara",
+    "groomFather": "Mrs.Siriwardhana",
+    "groomMother": "Mrs.Bandara",
+    "date": "2026-06-01",
+    "time": "09:00",
+    "venue": "Seethawaka Regency",
+    "poruwaTime": "10:30",
+    "rsvpDate": "2024-12-01",
+    "rsvpEmail": "wedding@example.com",
+    "message": "We're getting married!",
+    "template": "kandyan",
+    "language": "en",
+    "inviteeName": "kushan",
+    "locationDetails": {
+      "placeName": "Seethawaka Regency",
+      "address": "Seethawaka Regency, Colombo Road, Seethawaka, Avissawella, Colombo District, Western Province, 10700, Sri Lanka",
+      "latitude": 6.9448658,
+      "longitude": 80.1984649,
+      "placeId": "254945183"
+    },
+    "createdAt": "2026-05-05T04:08:36.872Z"
+  }
+}

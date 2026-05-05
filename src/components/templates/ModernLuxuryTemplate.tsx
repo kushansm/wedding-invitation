@@ -77,18 +77,12 @@ export const ModernLuxuryTemplate: React.FC<TemplateProps> = ({
     const [rsvpName, setRsvpName] = useState('');
     const [rsvpPhone, setRsvpPhone] = useState('');
     const [rsvpAttendance, setRsvpAttendance] = useState('joyfully');
-    const [rsvpDietary, setRsvpDietary] = useState<string[]>([]);
-
-    const toggleDietary = (diet: string) => {
-        setRsvpDietary(prev => prev.includes(diet) ? prev.filter(d => d !== diet) : [...prev, diet]);
-    };
 
     const handleWhatsAppConfirm = () => {
         const text = `Hi ${brideName} & ${groomName}, we're confirming our attendance!
 👤 Name: ${rsvpName}
 📞 Phone: ${rsvpPhone}
-✅ Status: ${rsvpAttendance === 'joyfully' ? 'Attending' : 'Regretfully declining'}
-🍽️ Dietary: ${rsvpDietary.length > 0 ? rsvpDietary.join(', ') : 'None'}`;
+✅ Status: ${rsvpAttendance === 'joyfully' ? 'Able to Attend' : 'Not Able to Attend'}`;
         window.open(`https://wa.me/?text=${encodeURIComponent(text)}`, '_blank');
     };
 
@@ -197,8 +191,8 @@ export const ModernLuxuryTemplate: React.FC<TemplateProps> = ({
 
                     <div className="space-y-8">
                         <div className="flex gap-4">
-                            <button onClick={() => setRsvpAttendance('joyfully')} className={`flex-1 py-4 border rounded-2xl text-[9px] tracking-[0.4em] transition-all font-bold ${rsvpAttendance === 'joyfully' ? 'bg-[#D4AF37] text-black border-[#D4AF37] shadow-lg shadow-[#D4AF37]/20' : 'text-white/40 border-white/10 hover:border-white/20'}`}>ACCEPT</button>
-                            <button onClick={() => setRsvpAttendance('regretfully')} className={`flex-1 py-4 border rounded-2xl text-[9px] tracking-[0.4em] transition-all font-bold ${rsvpAttendance === 'regretfully' ? 'bg-[#D4AF37] text-black border-[#D4AF37] shadow-lg shadow-[#D4AF37]/20' : 'text-white/40 border-white/10 hover:border-white/20'}`}>DECLINE</button>
+                            <button onClick={() => setRsvpAttendance('joyfully')} className={`flex-1 py-4 border rounded-2xl text-[9px] tracking-[0.4em] transition-all font-bold ${rsvpAttendance === 'joyfully' ? 'bg-[#D4AF37] text-black border-[#D4AF37] shadow-lg shadow-[#D4AF37]/20' : 'text-white/40 border-white/10 hover:border-white/20'}`}>I AM ABLE TO ATTEND</button>
+                            <button onClick={() => setRsvpAttendance('regretfully')} className={`flex-1 py-4 border rounded-2xl text-[9px] tracking-[0.4em] transition-all font-bold ${rsvpAttendance === 'regretfully' ? 'bg-[#D4AF37] text-black border-[#D4AF37] shadow-lg shadow-[#D4AF37]/20' : 'text-white/40 border-white/10 hover:border-white/20'}`}>NOT ABLE TO ATTEND</button>
                         </div>
 
                         <div className="space-y-4">
@@ -206,22 +200,7 @@ export const ModernLuxuryTemplate: React.FC<TemplateProps> = ({
                             <input value={rsvpPhone} onChange={(e) => setRsvpPhone(e.target.value)} type="text" placeholder="CONTACT NUMBER" className="w-full bg-white/5 border-b border-white/10 px-4 py-4 text-xs tracking-widest focus:border-[#D4AF37] outline-none transition-all placeholder:text-white/10" />
                         </div>
 
-                        <div className="space-y-4 pt-2">
-                            <p className="text-[9px] uppercase tracking-[0.3em] text-[#D4AF37]/60 font-bold ml-2">Dietary Requirements</p>
-                            <div className="grid grid-cols-2 gap-3 px-2">
-                                {['Vegetarian', 'Vegan', 'Gluten-Free', 'No Pork/Beef'].map(diet => (
-                                    <label key={diet} className="flex items-center gap-3 cursor-pointer group">
-                                        <div className="relative flex items-center justify-center">
-                                            <input type="checkbox" checked={rsvpDietary.includes(diet)} onChange={() => toggleDietary(diet)} className="peer appearance-none w-5 h-5 border border-white/20 rounded-md checked:bg-[#D4AF37] transition-all" />
-                                            <svg className="absolute w-3 h-3 text-black pointer-events-none opacity-0 peer-checked:opacity-100 transition-opacity font-bold" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="4">
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                                            </svg>
-                                        </div>
-                                        <span className="text-[10px] font-medium text-white/40 group-hover:text-white transition-colors">{diet}</span>
-                                    </label>
-                                ))}
-                            </div>
-                        </div>
+
                     </div>
 
                     <button onClick={handleWhatsAppConfirm} className="w-full py-6 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-black font-black text-[10px] tracking-[0.5em] rounded-full shadow-[0_20px_40px_-10px_rgba(212,175,55,0.4)] hover:scale-[1.02] active:scale-[0.98] transition-all uppercase">
